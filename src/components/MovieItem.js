@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom"
 
 const MovieItem = ({ movie }) => {
 
@@ -87,16 +88,26 @@ const MovieItem = ({ movie }) => {
 
   return (
     <div className="movie-item">
-      <a href="#!">
+      <Link to={`/movie/${movie.id}`}>
         <div className="image-container">
-          <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt="" />
-          <span className="movie-rating">{movie.vote_average}</span>
+          {movie.poster_path !== null
+            ? <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt="" />
+            : <div className="no-image">
+              <i className="fas fa-camera"></i>
+              <p>No image</p>
+            </div>
+          }
+          {movie.vote_average > 0
+            ? <span className="movie-rating">{movie.vote_average}</span>
+            : <span></span>
+          }
+
         </div>
         <div className="text-container">
           <h3 className="movie-title">{movie.title}</h3>
           <p className="movie-genre">{genreIds}</p>
         </div>
-      </a>
+      </Link>
     </div>
   )
 }
