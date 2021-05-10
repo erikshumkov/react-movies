@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Actors = ({ actor }) => {
+export default function Actors({ actor }) {
 
   const { profile_path, name, character } = actor;
 
@@ -22,5 +22,3 @@ const Actors = ({ actor }) => {
     </div>
   )
 }
-
-export default Actors

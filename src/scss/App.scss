@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
 }
 
 body {
@@ -11,10 +12,6 @@ body {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url('../images/cinema.jpg') no-repeat center center fixed;
   background-size: cover;
-}
-
-.App {
-  font-family: 'Lato', sans-serif;
 }
 
 .container {
@@ -43,16 +40,19 @@ header {
     }
 
     form {
+      position: relative;
       input {
         padding: 10px 8px 10px 12px;
         width: 250px;
         border: 1px solid black;
         border-right: none;
-        border-bottom-left-radius: 5px;
-        border-top-left-radius: 5px;
+        border-radius: 5px;
       }
       .search-btn {
-        border: 1px solid black;
+        position: absolute;
+        right: 5px;
+        top: 1px;
+        border: none;
         border-left: none;
         border-bottom-right-radius: 5px;
         border-top-right-radius: 5px;
@@ -336,3 +336,13 @@ header {
     }
   }
 }
+
+.search-not-found {
+  margin: 50px 0 100px 0;
+  h2 {
+    color: #fff;
+  }
+}
+
+@import 'movie';
+@import 'mediaqueries';

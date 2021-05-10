@@ -1,0 +1,16 @@
+.trailer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  .youtube-clip {
+    display: flex;
+    flex-direction: column;
+
+    h4 {
+      margin-bottom: 10px;
+    }
+
+    iframe {
+      margin-bottom: 20px;
+    }
+  }
+}

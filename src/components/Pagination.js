@@ -1,11 +1,18 @@
 import React from 'react'
 import { Link } from "react-router-dom"
+import { useUpdateData } from "../context/DataContext"
+import { nextUrl } from "../utilities/links"
 
-const Pagination = ({ nextPage, location, match }) => {
+export default function Pagination({ location, match }) {
+  const { getData, toggleLoading } = useUpdateData()
 
-  let paramNumber = +match.params.num;
-  let prev = paramNumber > 1 ? paramNumber - 1 : paramNumber;
-  let next = paramNumber + 1;
+  let paramNumber = +match.params.num
+  let prev = paramNumber > 1 ? paramNumber - 1 : paramNumber
+  let next = paramNumber + 1
+
+  const nextPage = (num) => {
+    getData(nextUrl(num), () => toggleLoading(false))
+  }
 
   return (
     <div className="pagination">
@@ -31,5 +38,3 @@ const Pagination = ({ nextPage, location, match }) => {
     </div>
   )
 }
-
-export default Pagination

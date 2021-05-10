@@ -1,13 +1,19 @@
 import React from 'react'
 import MovieItem from './MovieItem'
+import { useData } from "../context/DataContext"
+import NotFound from './NotFound'
 
-const MovieList = ({ movies }) => {
+export default function MovieList() {
+  const { data: movies, loading } = useData()
 
   return (
-    <div className="movie-list">
-      {movies.map(movie => <MovieItem key={movie.id} movie={movie} />)}
-    </div>
+    <>
+      {movies.length > 0 ?
+        (<div className="movie-list">
+          {movies.map(movie => <MovieItem key={movie.id} movie={movie} />)}
+        </div>)
+        :
+        (!loading && <NotFound />)}
+    </>
   )
 }
-
-export default MovieList

@@ -1,0 +1,42 @@
+@media (max-width: 450px) {
+  // Header
+  header.container {
+    max-width: 95%;
+  }
+
+  // Main
+  main.container {
+    max-width: 95%;
+
+    .movie-list {
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 20px 10px;
+
+      .movie-item {
+        width: 170px;
+        justify-self: center;
+
+        .image-container {
+          height: 240px;
+        }
+      }
+    }
+
+    .movie {
+      grid-template-columns: 1fr;
+
+      .movie-information {
+        grid-row: 1;
+        flex-direction: column;
+
+        .information-header {
+          align-items: flex-start;
+        }
+
+        .information-body {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
