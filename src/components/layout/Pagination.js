@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom"
-import { useUpdateData } from "../context/DataContext"
-import { nextUrl } from "../utilities/links"
+import { useUpdateData } from "../../context/DataContext"
+import { nextUrl } from "../../utilities/links"
 
 export default function Pagination({ location, match }) {
   const { getData, toggleLoading } = useUpdateData()

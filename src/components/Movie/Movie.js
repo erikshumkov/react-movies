@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from "react-router-dom"
 import { useUpdateData, useData } from "../../context/DataContext"
 import { movieDetails, getActors, getVideos, popularUrl } from "../../utilities/links"
-import Actors from '../Actors'
+import Actors from './Actors'
 
 const Movie = ({ location, match }) => {
   // Data context
   const { getDetails, toggleLoading, getData } = useUpdateData()
   const { data: movies } = useData()
-
 
   // Movie details state, actors, info about the movie
   const [details, setDetails] = useState({})
@@ -23,8 +22,6 @@ const Movie = ({ location, match }) => {
   const paramId = +match.params.movieid
 
   const movieInfo = movies?.find(mov => mov.id === paramId)
-  console.log(movieInfo)
-
 
   const { poster_path, title, vote_average, overview, release_date } = movieInfo
 
@@ -59,7 +56,6 @@ const Movie = ({ location, match }) => {
   }, [paramId, getDetails])
 
   if (movieInfo === undefined) {
-    console.log("Check");
     return (
       <Redirect to="/popular/1" />
     )
@@ -95,16 +91,19 @@ const Movie = ({ location, match }) => {
             <div className="information-footer">
               <div className="release-date">
                 <i className="far fa-calendar-alt"></i>
-                <p>Release date: {release_date}</p>
+                <p className="date-desktop">Release date: {release_date}</p>
+                <p className="date-mobile">{release_date.split("-")[0]}</p>
               </div>
               <div className="duration">
                 <i className="fas fa-hourglass-half"></i>
-                <p>Duration: {runtime} minutes</p>
+                <p className="duration-desktop">Duration: {runtime} minutes</p>
+                <p className="duration-mobile">{runtime} min</p>
               </div>
               {budget !== undefined && budget > 0 &&
                 <div className="budget">
                   <i className="fas fa-wallet"></i>
-                  <p>Budget: ${budget}</p>
+                  <p className="budget-desktop">Budget: ${budget}</p>
+                  <p className="budget-mobile">${budget}</p>
                 </div>
               }
             </div>
@@ -120,6 +119,7 @@ const Movie = ({ location, match }) => {
           </div>
           <div className="trailer-grid">
             {trailer.results !== undefined ? (trailer.results.map((clip, index) => {
+              console.log(clip)
 
               if (toggleVideos) return (
                 <div key={clip.id} className="youtube-clip">

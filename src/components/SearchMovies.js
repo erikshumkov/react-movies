@@ -24,7 +24,12 @@ export default function SearchMovies() {
 
   return (
     <form onSubmit={e => onSubmit(e)}>
-      <input type="text" name="search" placeholder="Search by movie title" onChange={e => changeSearchTerm(e.target.value)} />
+      <input type="text"
+        name="search"
+        placeholder="Search by movie title"
+        value={term}
+        onChange={e => changeSearchTerm(e.target.value)}
+      />
       <button type="submit" className="search-btn">
         <i className="fas fa-search"></i>
       </button>

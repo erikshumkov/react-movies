@@ -7,9 +7,9 @@ import {
 } from "react-router-dom"
 
 import './css/App.css';
-import MovieList from './components/MovieList'
-import Pagination from './components/Pagination'
-import Movie from './components/pages/Movie'
+import MovieList from './components/Movie/MovieList'
+import Pagination from './components/layout/Pagination'
+import Movie from './components/Movie/Movie'
 import StartAtTop from './components/StartAtTop'
 import Footer from './components/layout/Footer'
 import Header from './components/layout/Header'

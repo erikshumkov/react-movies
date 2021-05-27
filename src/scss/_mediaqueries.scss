@@ -2,6 +2,10 @@
   // Header
   header.container {
     max-width: 95%;
+
+    .navigation {
+      align-items: start;
+    }
   }
 
   // Main
@@ -25,6 +29,10 @@
     .movie {
       grid-template-columns: 1fr;
 
+      .movie-image {
+        justify-self: center;
+      }
+
       .movie-information {
         grid-row: 1;
         flex-direction: column;
@@ -36,6 +44,143 @@
         .information-body {
           margin-top: 0;
         }
+
+        .information-footer {
+          margin-bottom: 20px;
+
+          .date-desktop,
+          .duration-desktop,
+          .budget-desktop {
+            display: none;
+          }
+
+          .release-date {
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+
+  .trailer {
+    .trailer-grid {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+
+    .trailer-grid .youtube-clip iframe {
+      width: 330px !important;
+      height: 250px !important;
+    }
+  }
+
+  .cast {
+    .cast-header {
+      margin-bottom: 20px;
+    }
+
+    padding: 30px 15px;
+    .actors-container {
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 20px;
+
+      .actor {
+        width: 150px;
+        justify-self: center;
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  // Header
+  header.container {
+    max-width: 95%;
+
+    .navigation {
+      align-items: center;
+    }
+  }
+
+  // Main
+  main.container {
+    max-width: 95%;
+
+    .movie-list {
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 20px 10px;
+
+      .movie-item {
+        width: 170px;
+        justify-self: center;
+
+        .image-container {
+          height: 240px;
+        }
+      }
+    }
+
+    .movie {
+      grid-template-columns: 1fr;
+
+      .movie-image {
+        justify-self: center;
+      }
+
+      .movie-information {
+        grid-row: 1;
+        flex-direction: column;
+
+        .information-header {
+          align-items: flex-start;
+        }
+
+        .information-body {
+          margin-top: 0;
+        }
+
+        .information-footer {
+          margin-bottom: 20px;
+
+          .date-desktop,
+          .duration-desktop,
+          .budget-desktop {
+            display: none;
+          }
+
+          .release-date {
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+
+  .trailer {
+    .trailer-grid {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+
+    .trailer-grid .youtube-clip iframe {
+      width: 330px !important;
+      height: 250px !important;
+    }
+  }
+
+  .cast {
+    .cast-header {
+      margin-bottom: 20px;
+    }
+
+    padding: 30px 15px;
+    .actors-container {
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 20px;
+
+      .actor {
+        width: 150px;
+        justify-self: center;
       }
     }
   }

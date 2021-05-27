@@ -8,9 +8,7 @@ export default function NotFound() {
   useEffect(() => {
     toggleNotFound(true)
     // eslint-disable-next-line
-    return () => {
-      toggleNotFound(false)
-    }
+    return () => toggleNotFound(false)
   }, [])
 
   return (

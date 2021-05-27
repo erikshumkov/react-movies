@@ -1,7 +1,7 @@
 import React from 'react'
 import MovieItem from './MovieItem'
-import { useData } from "../context/DataContext"
-import NotFound from './NotFound'
+import { useData } from "../../context/DataContext"
+import NotFound from '../NotFound'
 
 export default function MovieList() {
   const { data: movies, loading } = useData()

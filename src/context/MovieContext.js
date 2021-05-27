@@ -26,6 +26,7 @@ export function MovieProvider({ children }) {
 
   const stateValue = {
     term,
+    setTerm,
     notFound
   }
 
