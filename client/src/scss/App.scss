@@ -23,18 +23,42 @@ header {
   padding: 25px 0;
   .navigation {
     display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
 
-    .logo {
-      width: 220px;
-      height: 50px;
-      a {
-        display: flex;
-        img {
-          max-width: 100%;
+    .logo-search {
+      display: flex;
+      align-items: center;
+
+      .logo {
+        width: 220px;
+        height: 50px;
+        a {
+          display: flex;
+          img {
+            max-width: 100%;
+          }
+          h1 {
+            font-size: 12px;
+          }
         }
-        h1 {
-          font-size: 12px;
+      }
+    }
+
+    .sign-in {
+      .menu.desktop {
+        list-style: none;
+
+        a {
+          text-decoration: none;
+          color: #fff;
+          text-transform: uppercase;
+          li {
+            background: #c82333;
+            padding: 8px 18px;
+            border-radius: 6px;
+          }
         }
       }
     }
@@ -345,4 +369,5 @@ header {
 }
 
 @import 'movie';
+@import 'auth';
 @import 'mediaqueries';

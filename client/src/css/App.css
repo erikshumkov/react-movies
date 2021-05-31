@@ -18,16 +18,31 @@ header {
   padding: 25px 0; }
   header .navigation {
     display: flex;
-    align-items: center; }
-    header .navigation .logo {
-      width: 220px;
-      height: 50px; }
-      header .navigation .logo a {
-        display: flex; }
-        header .navigation .logo a img {
-          max-width: 100%; }
-        header .navigation .logo a h1 {
-          font-size: 12px; }
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; }
+    header .navigation .logo-search {
+      display: flex;
+      align-items: center; }
+      header .navigation .logo-search .logo {
+        width: 220px;
+        height: 50px; }
+        header .navigation .logo-search .logo a {
+          display: flex; }
+          header .navigation .logo-search .logo a img {
+            max-width: 100%; }
+          header .navigation .logo-search .logo a h1 {
+            font-size: 12px; }
+    header .navigation .sign-in .menu.desktop {
+      list-style: none; }
+      header .navigation .sign-in .menu.desktop a {
+        text-decoration: none;
+        color: #fff;
+        text-transform: uppercase; }
+        header .navigation .sign-in .menu.desktop a li {
+          background: #c82333;
+          padding: 8px 18px;
+          border-radius: 6px; }
     header .navigation form {
       position: relative; }
       header .navigation form input {
@@ -271,6 +286,79 @@ header {
     .trailer-grid .youtube-clip iframe {
       margin-bottom: 20px; }
 
+#login {
+  padding: 30px 20px 100px;
+  background: transparent;
+  height: 100vh;
+  font-family: 'Lato', sans-serif; }
+  #login .container .login-box {
+    background: rgba(0, 0, 0, 0.25);
+    padding: 30px 50px;
+    width: 50%;
+    margin: 0 auto; }
+    #login .container .login-box h3 {
+      color: #fff;
+      margin-bottom: 4rem;
+      font-size: 35px;
+      font-weight: 500; }
+    #login .container .login-box h3.skapa-konto {
+      margin-bottom: 3rem; }
+    #login .container .login-box p {
+      color: #fff;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      font-size: 0.9rem; }
+    #login .container .login-box form .input-details {
+      display: flex;
+      flex-direction: column; }
+      #login .container .login-box form .input-details input {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid lightgrey;
+        padding: 10px;
+        color: grey; }
+      #login .container .login-box form .input-details #email {
+        margin-bottom: 2rem; }
+      #login .container .login-box form .input-details #password2 {
+        margin-top: 2rem; }
+    #login .container .login-box form .remember-me {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 2rem; }
+      #login .container .login-box form .remember-me label {
+        margin-left: 10px;
+        font-size: 14px;
+        font-weight: 300;
+        color: #fff; }
+    #login .container .login-box form .login {
+      text-transform: uppercase;
+      background: #c82333;
+      border: none;
+      color: #fff;
+      padding: 15px 120px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      margin: 20px 0 1rem;
+      cursor: pointer; }
+      #login .container .login-box form .login:hover {
+        background: #b31f2e; }
+    #login .container .login-box a.forgot {
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 500; }
+
+@media screen and (max-width: 768px) {
+  #login .container .login-box {
+    width: 100%; }
+
+  .favorites .favorite-container {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 50px;
+    max-width: 95%; } }
+@media screen and (max-width: 500px) {
+  #login .container .login-box form .login {
+    width: 100%;
+    padding: 20px; } }
 @media (max-width: 450px) {
   header.container {
     max-width: 95%; }
