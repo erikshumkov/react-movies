@@ -12,6 +12,8 @@ import StartAtTop from './components/StartAtTop'
 import Footer from './components/layout/Footer'
 import Header from './components/layout/Header'
 import Auth from './components/Auth/Auth'
+import Register from './components/Auth/Register'
+import Dashboard from './components/Dashboard/Dashboard'
 
 // Context
 import { useData, useUpdateData } from './context/DataContext'
@@ -43,6 +45,12 @@ function App() {
               </Route>
               <Route exact path='/auth'>
                 <Auth />
+              </Route>
+              <Route exact path='/register'>
+                <Register />
+              </Route>
+              <Route exact path='/dashboard'>
+                <Dashboard />
               </Route>
               <Route
                 exact
