@@ -25,7 +25,10 @@ exports.login = async (req, res, next) => {
       // Store token in cookies
       res.cookie('token', token, { httpOnly: true })
 
-      return res.status(200).json({ success: true, token })
+      // Remove password from object
+      user.password = undefined
+
+      return res.status(200).json({ success: true, token, data: user })
     }
 
     res.status(400).json({ success: false, data: {} })

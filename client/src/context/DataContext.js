@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState } from 'react'
 
 const DataContext = React.createContext()
 
@@ -18,16 +18,13 @@ export function DataProvider({ children }) {
   const [loading, setLoading] = useState(true)
 
   async function getData(url, callback) {
-
     const response = await fetch(url)
 
     if (response.status !== 200) {
-      throw new Error("Failed to fetch the data..")
+      throw new Error('Failed to fetch the data..')
     }
 
     const data = await response.json()
-
-    console.log(data)
 
     setData(data.results)
 
@@ -37,11 +34,10 @@ export function DataProvider({ children }) {
   }
 
   async function getDetails(url, callback) {
-
     const response = await fetch(url)
 
     if (response.status !== 200) {
-      throw new Error("Failed to fetch the data..")
+      throw new Error('Failed to fetch the data..')
     }
 
     const data = await response.json()
@@ -56,14 +52,13 @@ export function DataProvider({ children }) {
   const value = {
     getData,
     getDetails,
-    toggleLoading
+    toggleLoading,
   }
 
   const dataState = {
     data,
-    loading
+    loading,
   }
-
 
   return (
     <DataContext.Provider value={dataState}>

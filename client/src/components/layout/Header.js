@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { nextUrl } from '../../utilities/links'
 import { useMovie } from '../../context/MovieContext'
 import { useUpdateData } from '../../context/DataContext'
+import AuthService from '../Auth/AuthService'
 
 import SearchMovies from '../SearchMovies'
 import logo from '../../images/cinema-logo.png'
@@ -37,6 +38,12 @@ export default function Header() {
           <ul className='menu desktop'>
             <Link to='/auth'>
               <li>Sign In</li>
+            </Link>
+            <Link to='/dashboard'>
+              <li>Dashboard</li>
+            </Link>
+            <Link to='/' onClick={AuthService.logout}>
+              <li>Sign Out</li>
             </Link>
           </ul>
         </div>

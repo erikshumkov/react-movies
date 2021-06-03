@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 const connectDB = require('./config/database')
 const colors = require('colors')
+const cors = require('cors')
 
 const { protected } = require('./middleware/protected')
 
@@ -18,6 +19,7 @@ connectDB()
 const auth = require('./routes/auth')
 
 // Init middleware
+app.use(cors())
 app.use(express.json({ extended: false }))
 app.use(cookieParser())
 

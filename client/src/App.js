@@ -21,6 +21,7 @@ import { useMovie } from './context/MovieContext'
 
 // Utilities
 import { popularUrl } from './utilities/links'
+import PrivateRoute from './components/routing/PrivateRoute'
 
 function App() {
   const { getData, toggleLoading } = useUpdateData()
@@ -43,15 +44,31 @@ function App() {
               <Route exact path='/'>
                 <Redirect to='/popular/1' />
               </Route>
-              <Route exact path='/auth'>
-                <Auth />
-              </Route>
-              <Route exact path='/register'>
-                <Register />
-              </Route>
-              <Route exact path='/dashboard'>
-                <Dashboard />
-              </Route>
+              <Route
+                exact
+                path='/auth'
+                render={props => {
+                  return (
+                    <>
+                      <Auth {...props} />
+                    </>
+                  )
+                }}
+              ></Route>
+              <Route
+                exact
+                path='/register'
+                render={props => {
+                  return (
+                    <>
+                      <Register {...props} />
+                    </>
+                  )
+                }}
+              ></Route>
+
+              <PrivateRoute exact path='/dashboard' component={Dashboard} />
+
               <Route
                 exact
                 path='/popular/:num'
