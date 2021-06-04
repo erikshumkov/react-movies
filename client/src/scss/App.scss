@@ -49,16 +49,22 @@ header {
     .sign-in {
       .menu.desktop {
         list-style: none;
+        display: flex;
 
         a {
           text-decoration: none;
           color: #fff;
           text-transform: uppercase;
+          margin: 0 5px;
           li {
             background: #c82333;
             padding: 8px 18px;
             border-radius: 6px;
+            font-size: 14px;
           }
+        }
+        a:last-child {
+          margin-right: 0;
         }
       }
     }

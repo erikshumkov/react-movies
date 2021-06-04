@@ -19,7 +19,7 @@ connectDB()
 const auth = require('./routes/auth')
 
 // Init middleware
-app.use(cors())
+app.use(cors({ origin: true, credentials: true }))
 app.use(express.json({ extended: false }))
 app.use(cookieParser())
 

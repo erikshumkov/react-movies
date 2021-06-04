@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 
 // @route  POST api/v1/auth/login
@@ -22,13 +23,14 @@ exports.login = async (req, res, next) => {
       // Create new token in User model
       const token = await user.createToken()
 
-      // Store token in cookies
-      res.cookie('token', token, { httpOnly: true })
-
       // Remove password from object
       user.password = undefined
 
-      return res.status(200).json({ success: true, token, data: user })
+      // Store token in cookies
+      return res
+        .status(200)
+        .cookie('token', token, { httpOnly: true })
+        .json({ success: true, token, data: user, message: 'User logged in.' })
     }
 
     res.status(400).json({ success: false, data: {} })
@@ -49,10 +51,9 @@ exports.register = async (req, res, next) => {
     const token = await user.createToken()
 
     // Store token in cookies
-    res.cookie('token', token, { httpOnly: true })
-
     res
       .status(200)
+      .cookie('token', token, { httpOnly: true })
       .json({ success: true, data: { id: user._id, email: user.email }, token })
   } catch (err) {
     console.log(err)
@@ -65,22 +66,40 @@ exports.register = async (req, res, next) => {
 // @access Private
 exports.logout = async (req, res) => {
   // Remove token from cookies
-  res.cookie('token', 'NoToken', { httpOnly: true, maxAge: 0 })
-
-  res.status(200).json({ success: true, data: {} })
+  res.status(200).clearCookie('token').json({
+    success: true,
+    data: {},
+    message: 'User logged out.',
+  })
 }
 
 // @route  GET api/v1/auth/getMe
 // @desc   Get logged in user information
 // @access Private
-exports.getMe = async (req, res) => {
-  const user = await User.findById(req.token.id)
+exports.getMe = async (req, res, next) => {
+  try {
+    const token = req.cookies.token
+    if (!token) {
+      return res.status(202).json({
+        success: false,
+        message: 'No user logged in. Please log in.',
+      })
+    }
 
-  // Check if user exists
-  if (!user) {
-    console.log('User not found')
-    return res.status(404).json({ error: 'User not found' })
-  }
+    const decodedJWT = jwt.verify(token, process.env.JWT_SECRET)
 
-  res.status(200).json({ success: true, data: user })
+    if (!decodedJWT) {
+      return res.status(202).json({
+        success: false,
+        message: 'Token not valid. Please log in.',
+      })
+    }
+
+    const user = await User.findById(decodedJWT.id)
+    res.status(200).json({
+      success: true,
+      data: user,
+      message: 'User authenticated and logged in.',
+    })
+  } catch (err) {}
 }

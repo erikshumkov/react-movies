@@ -5,6 +5,8 @@ import AuthService from '../Auth/AuthService'
 
 const user = AuthService.getCurrentUser()
 
+console.log(user)
+
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}

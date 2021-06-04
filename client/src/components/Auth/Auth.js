@@ -42,7 +42,7 @@ export default function Auth({ history }) {
       AuthService.login(formData.email, formData.password).then(
         res => {
           history.push('/dashboard')
-          window.location.reload()
+          // window.location.reload()
         },
         error => {
           console.log('Error', error)
