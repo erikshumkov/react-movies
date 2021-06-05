@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken')
 exports.protected = async function (req, res, next) {
   try {
     const token = req.cookies.token
-    console.log(token)
     if (!token) {
       return res.status(401).json({ success: false, msg: 'Not authenticated.' })
     }
@@ -18,8 +17,6 @@ exports.protected = async function (req, res, next) {
     req.userId = decodedJWT.id
     next()
   } catch (err) {
-    return res
-      .status(401)
-      .json({ success: false, msg: 'Something wrong, in protected middleware' })
+    next(err)
   }
 }

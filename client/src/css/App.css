@@ -230,6 +230,10 @@ header {
         .movie .movie-information .information-footer .release-date i,
         .movie .movie-information .information-footer .budget i {
           margin-right: 10px; }
+      .movie .movie-information .information-footer .duration-mobile,
+      .movie .movie-information .information-footer .budget-mobile,
+      .movie .movie-information .information-footer .date-mobile {
+        display: none; }
 
 .cast {
   background: #fff;

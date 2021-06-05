@@ -17,7 +17,7 @@ exports.login = async (req, res, next) => {
     }
 
     // Check password match in User model
-    const checkPassword = user.matchPassword(password)
+    const checkPassword = await user.matchPassword(password)
 
     if (checkPassword) {
       // Create new token in User model
@@ -29,13 +29,15 @@ exports.login = async (req, res, next) => {
       // Store token in cookies
       return res
         .status(200)
-        .cookie('token', token, { httpOnly: true })
+        .cookie('token', token, { httpOnly: false })
         .json({ success: true, token, data: user, message: 'User logged in.' })
     }
 
-    res.status(400).json({ success: false, data: {} })
+    res
+      .status(400)
+      .json({ success: false, data: {}, message: 'Login unsuccessful' })
   } catch (error) {
-    return res.status(404).json({ success: false, error: 'User not found' })
+    return res.status(404).json({ success: false, error: 'Login unsuccessful' })
   }
 }
 
@@ -53,7 +55,7 @@ exports.register = async (req, res, next) => {
     // Store token in cookies
     res
       .status(200)
-      .cookie('token', token, { httpOnly: true })
+      .cookie('token', token, { httpOnly: false })
       .json({ success: true, data: { id: user._id, email: user.email }, token })
   } catch (err) {
     console.log(err)
@@ -66,6 +68,8 @@ exports.register = async (req, res, next) => {
 // @access Private
 exports.logout = async (req, res) => {
   // Remove token from cookies
+  console.log('Logout ran..')
+
   res.status(200).clearCookie('token').json({
     success: true,
     data: {},
@@ -101,5 +105,8 @@ exports.getMe = async (req, res, next) => {
       data: user,
       message: 'User authenticated and logged in.',
     })
-  } catch (err) {}
+  } catch (err) {
+    if (!err.statusCode) error.statusCode = 500
+    res.status(status).json({ err: err.data })
+  }
 }

@@ -1,25 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { nextUrl } from '../../utilities/links'
+
+// Context
+import { useAuth, useUpdateAuth } from '../../context/AuthContext'
 import { useMovie } from '../../context/MovieContext'
 import { useUpdateData } from '../../context/DataContext'
+
+// Auth utilities
 import AuthService from '../Auth/AuthService'
-import Cookies from 'universal-cookie'
 
 import SearchMovies from '../SearchMovies'
 import logo from '../../images/cinema-logo.png'
 
-const cookies = new Cookies()
-
 export default function Header() {
+  const { authenticated } = useAuth()
+  const { logout } = AuthService
+  const toggleAuthenticated = useUpdateAuth()
   const { getData, toggleLoading } = useUpdateData()
   const { setTerm } = useMovie()
-
-  const loggedOut = JSON.parse(localStorage.getItem('user')) === null
-
-  const cookie = cookies.get('token')
-
-  console.log(cookie)
 
   const nextPage = num => {
     getData(nextUrl(num), () => toggleLoading(false))
@@ -45,7 +44,7 @@ export default function Header() {
 
         <div className='sign-in'>
           <ul className='menu desktop'>
-            {loggedOut ? (
+            {!authenticated ? (
               <>
                 <Link to='/auth'>
                   <li>Sign In</li>
@@ -56,7 +55,13 @@ export default function Header() {
                 <Link to='/dashboard'>
                   <li>Dashboard</li>
                 </Link>
-                <Link to='/' onClick={AuthService.logout}>
+                <Link
+                  to='/'
+                  onClick={() => {
+                    toggleAuthenticated()
+                    logout()
+                  }}
+                >
                   <li>Sign Out</li>
                 </Link>
               </>

@@ -299,6 +299,12 @@ header {
           margin-right: 10px;
         }
       }
+
+      .duration-mobile,
+      .budget-mobile,
+      .date-mobile {
+        display: none;
+      }
     }
   }
 }

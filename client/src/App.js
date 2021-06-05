@@ -18,17 +18,20 @@ import Dashboard from './components/Dashboard/Dashboard'
 // Context
 import { useData, useUpdateData } from './context/DataContext'
 import { useMovie } from './context/MovieContext'
+import { useAuth } from './context/AuthContext'
 
 // Utilities
 import { popularUrl } from './utilities/links'
 import PrivateRoute from './components/routing/PrivateRoute'
 
 function App() {
+  const { checkLoggedIn } = useAuth()
   const { getData, toggleLoading } = useUpdateData()
   const { notFound } = useMovie()
   const { loading } = useData()
 
   useEffect(() => {
+    checkLoggedIn()
     getData(popularUrl, () => toggleLoading(false))
     // eslint-disable-next-line
   }, [])

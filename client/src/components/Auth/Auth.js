@@ -40,9 +40,9 @@ export default function Auth({ history }) {
 
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.login(formData.email, formData.password).then(
-        res => {
-          history.push('/dashboard')
-          // window.location.reload()
+        () => {
+          history.push('/')
+          window.location.reload()
         },
         error => {
           console.log('Error', error)
@@ -90,8 +90,8 @@ export default function Auth({ history }) {
               <br />
 
               <button className='login' disabled={loading}>
-                {loading && <span>Spinner!</span>}
-                <span>Sign In</span>
+                {loading && <span>Loading...</span>}
+                {!loading && <span>Sign In</span>}
               </button>
               <CheckButton style={{ display: 'none' }} ref={checkBtn} />
             </Form>

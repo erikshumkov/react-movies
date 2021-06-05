@@ -1,8 +1,18 @@
 import React from 'react'
-import AuthService from '../Auth/AuthService'
+
+// Context
+import { useAuth } from '../../context/AuthContext'
 
 export default function Dashboard() {
-  const user = AuthService.getCurrentUser()
+  const { user, loading } = useAuth()
 
-  return <div style={{ color: '#fff' }}>Welcome email@gmail.com</div>
+  return (
+    !loading &&
+    user.data !== undefined && (
+      <>
+        <div style={{ color: '#fff' }}>Welcome {user.data.email}</div>
+        <p style={{ color: '#fff' }}>{user.message}</p>
+      </>
+    )
+  )
 }

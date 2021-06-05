@@ -14,7 +14,6 @@ export function useUpdateData() {
 
 export function DataProvider({ children }) {
   const [data, setData] = useState([])
-  // const [error, setError] = useState()
   const [loading, setLoading] = useState(true)
 
   async function getData(url, callback) {
