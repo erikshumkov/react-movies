@@ -46,6 +46,8 @@ header {
           padding: 8px 18px;
           border-radius: 6px;
           font-size: 14px; }
+        header .navigation .sign-in .menu.desktop a li.menu-item-nobg {
+          background: none; }
       header .navigation .sign-in .menu.desktop a:last-child {
         margin-right: 0; }
     header .navigation form {
@@ -125,6 +127,60 @@ header {
       .movie-list .movie-item .text-container .movie-genre {
         font-size: 12px;
         line-height: 1.6; }
+
+.watchlist-page {
+  margin: 30px 0 190px 0;
+  padding: 0px 0 50px 0; }
+  .watchlist-page .watchlist-head h2 {
+    color: #fff;
+    font-size: 30px; }
+  .watchlist-page .watchlist-body {
+    padding: 30px 0 70px 0;
+    color: #fff; }
+    .watchlist-page .watchlist-body .message-empty {
+      text-align: center;
+      margin: 80px 0 80px 0;
+      font-size: 18px;
+      display: none; }
+    .watchlist-page .watchlist-body .watchlist-list {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-gap: 20px 30px; }
+      .watchlist-page .watchlist-body .watchlist-list .movie-item {
+        width: 200px; }
+        .watchlist-page .watchlist-body .watchlist-list .movie-item a {
+          color: #000;
+          text-decoration: none; }
+        .watchlist-page .watchlist-body .watchlist-list .movie-item .image-container {
+          width: 100%;
+          height: 300px;
+          position: relative; }
+          .watchlist-page .watchlist-body .watchlist-list .movie-item .image-container img {
+            max-width: 100%;
+            width: 100%;
+            height: 100%;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px; }
+        .watchlist-page .watchlist-body .watchlist-list .movie-item .text-container {
+          display: flex;
+          flex-direction: column;
+          padding: 20px 15px 20px;
+          background-color: #fff;
+          color: #000; }
+          .watchlist-page .watchlist-body .watchlist-list .movie-item .text-container .movie-title {
+            font-weight: 400;
+            font-size: 16px;
+            margin-bottom: 10px; }
+          .watchlist-page .watchlist-body .watchlist-list .movie-item .text-container .remove-btn {
+            align-self: flex-end;
+            color: #000;
+            background: #eeeeee;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 500;
+            border: 1px solid #f9f9f9;
+            cursor: pointer; }
 
 .pagination {
   display: flex;

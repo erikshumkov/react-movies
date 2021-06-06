@@ -17,6 +17,7 @@ connectDB()
 
 // Route files
 const auth = require('./routes/auth')
+const watchlist = require('./routes/watchlist')
 
 // Init middleware
 app.use(cors({ origin: true, credentials: true }))
@@ -25,6 +26,7 @@ app.use(cookieParser())
 
 // Mount routes
 app.use('/api/v1/auth', auth)
+app.use('/api/v1/watchlist', watchlist)
 
 app.get('/', (req, res) => {
   res.send('Api running')

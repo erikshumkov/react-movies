@@ -45,9 +45,15 @@ exports.login = async (req, res, next) => {
 // @desc   Register user
 // @access Public
 exports.register = async (req, res, next) => {
+  const { email, password, password2 } = req.body
   try {
+    if (password !== password2) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Password and password2 must match.' })
+    }
     // Create new user
-    const user = await User.create(req.body)
+    const user = await User.create({ email, password })
 
     // Create new token
     const token = await user.createToken()

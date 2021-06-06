@@ -46,14 +46,20 @@ export default function Header() {
           <ul className='menu desktop'>
             {!authenticated ? (
               <>
+                <Link to='/'>
+                  <li className='menu-item-nobg'>Movies</li>
+                </Link>
                 <Link to='/auth'>
                   <li>Sign In</li>
                 </Link>
               </>
             ) : (
               <>
+                <Link to='/'>
+                  <li className='menu-item-nobg'>Movies</li>
+                </Link>
                 <Link to='/dashboard'>
-                  <li>Dashboard</li>
+                  <li className='menu-item-nobg'>My watchlist</li>
                 </Link>
                 <Link
                   to='/'

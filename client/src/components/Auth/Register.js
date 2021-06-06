@@ -42,6 +42,8 @@ export default function Register({ history }) {
     password2: '',
   })
 
+  const { email, password, password2 } = formData
+
   const onChange = e => {
     setFormData({
       ...formData,
@@ -55,21 +57,26 @@ export default function Register({ history }) {
     setMessage('')
     setSuccess(false)
 
-    form.current.validateAll()
+    if (password === password2) {
+      form.current.validateAll()
 
-    if (checkBtn.current.context._errors.length === 0) {
-      AuthService.register(formData.email, formData.password).then(
-        res => {
-          setMessage(res.data.message)
-          setSuccess(true)
-          history.push('/')
-        },
-        error => {
-          console.log('Error', error)
-          setMessage('Error!')
-          setSuccess(false)
-        }
-      )
+      if (checkBtn.current.context._errors.length === 0) {
+        AuthService.register(email, password, password2).then(
+          res => {
+            setMessage(res.data.message)
+            setSuccess(true)
+            history.push('/')
+            window.location.reload()
+          },
+          error => {
+            console.log('Error', error)
+            setMessage('Error!')
+            setSuccess(false)
+          }
+        )
+      }
+    } else {
+      setMessage('Passwords do not match.')
     }
   }
 
@@ -87,7 +94,7 @@ export default function Register({ history }) {
                   name='email'
                   id='email'
                   placeholder='Email address'
-                  value={formData.email}
+                  value={email}
                   onChange={e => onChange(e)}
                   validations={[required, validEmail]}
                 />
@@ -99,7 +106,7 @@ export default function Register({ history }) {
                   placeholder='Choose a password (6 characters min length)'
                   minLength='6'
                   maxLength='40'
-                  value={formData.password}
+                  value={password}
                   onChange={e => onChange(e)}
                   validations={[required, checkPassword]}
                 />
@@ -111,8 +118,9 @@ export default function Register({ history }) {
                   placeholder='Confirm password'
                   minLength='6'
                   maxLength='40'
-                  value={formData.password2}
+                  value={password2}
                   onChange={e => onChange(e)}
+                  validations={[required, checkPassword]}
                 />
               </div>
 

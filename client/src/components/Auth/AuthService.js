@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const API = 'http://localhost:5000/api/v1/auth'
 
-const register = (email, password) => {
+const register = (email, password, password2) => {
   const config = {
     withCredentials: true,
     credentials: 'include',
@@ -13,6 +13,7 @@ const register = (email, password) => {
     {
       email,
       password,
+      password2,
     },
     config
   )
