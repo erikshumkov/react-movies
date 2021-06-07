@@ -51,7 +51,6 @@ exports.getMovies = async (req, res, next) => {
 // @access Private
 exports.deleteMovie = async (req, res, next) => {
   const id = req.params.id
-  console.log(req.body)
   try {
     const movie = await Watchlist.findOneAndDelete({ _id: id })
 

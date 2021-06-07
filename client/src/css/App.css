@@ -258,6 +258,17 @@ header {
       .movie .movie-information .information-body h2 {
         font-size: 20px;
         margin-bottom: 20px; }
+      .movie .movie-information .information-body .add-watchlist {
+        background: #0e63be;
+        padding: 8px 18px;
+        border-radius: 6px;
+        font-size: 14px;
+        border: none;
+        color: #fff;
+        margin-bottom: 5px;
+        cursor: pointer; }
+        .movie .movie-information .information-body .add-watchlist i {
+          margin-right: 10px; }
       .movie .movie-information .information-body .movie-description {
         margin-bottom: 20px;
         color: grey;
