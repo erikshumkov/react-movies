@@ -157,8 +157,6 @@ const Movie = ({ location, match }) => {
             <div className='trailer-grid'>
               {trailer.results !== undefined
                 ? trailer.results.map((clip, index) => {
-                    console.log(clip)
-
                     if (toggleVideos)
                       return (
                         <div key={clip.id} className='youtube-clip'>

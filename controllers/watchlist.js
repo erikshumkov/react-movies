@@ -5,28 +5,37 @@ const User = require('../models/User')
 // @desc   Add movie to watchlist
 // @access Private
 exports.addMovie = async (req, res, next) => {
-  const { title, movieId, imageSrc } = req.body
-  try {
-    let movie = await Watchlist.findOne({ title })
+  const { title, movieId, imageSrc, user } = req.body
+  // try {
+  const movie = new Watchlist(req.body)
 
-    // Check if movie exist
-    if (!movie) {
-      movie = await Watchlist.create(req.body)
+  const person = await Watchlist.find({ user })
 
-      return res.status(201).json({
-        success: true,
-        data: movie,
-        message: 'Movie successfully added to database.',
-      })
-    } else {
-      return res.status(406).json({ error: 'Movie already exist in watchlist' })
-    }
-  } catch (error) {
-    return res.status(406).json({
-      success: false,
-      error: 'Something wrong when trying to add movie.',
-    })
+  const check = person.filter(film => film.title === movie.title)
+
+  if (check.length === 0) {
+    movie.save()
+    res.status(201).json({ success: true, data: movie })
   }
+
+  // Check if movie exist
+  //   if (findMovie.length === 0) {
+  //     movie = await Watchlist.create(req.body)
+
+  //     return res.status(201).json({
+  //       success: true,
+  //       data: movie,
+  //       message: 'Movie successfully added to database.',
+  //     })
+  //   } else {
+  //     return res.status(406).json({ error: 'Movie already exist in watchlist' })
+  //   }
+  // } catch (error) {
+  //   return res.status(406).json({
+  //     success: false,
+  //     error: 'Something wrong when trying to add movie.',
+  //   })
+  // }
 }
 
 // @route  GET api/v1/watchlist/:userId

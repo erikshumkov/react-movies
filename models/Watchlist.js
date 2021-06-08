@@ -4,14 +4,10 @@ const Schema = mongoose.Schema
 const WatchlistSchema = new Schema({
   title: {
     type: String,
-    required: true,
-    unique: true,
     trim: true,
   },
   movieId: {
     type: Number,
-    required: true,
-    unique: true,
   },
   imageSrc: {
     type: String,
