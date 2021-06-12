@@ -22,19 +22,34 @@ import { useAuth } from './context/AuthContext'
 
 // Utilities
 import { popularUrl } from './utilities/links'
+import watchlist from './utilities/watchlist'
 import PrivateRoute from './components/routing/PrivateRoute'
 
 function App() {
-  const { checkLoggedIn } = useAuth()
+  const { checkLoggedIn, user, authenticated, setWatchlist } = useAuth()
   const { getData, toggleLoading } = useUpdateData()
   const { notFound } = useMovie()
   const { loading } = useData()
 
+  const { getMovies } = watchlist
+
   useEffect(() => {
     checkLoggedIn()
+
+    if (authenticated && user.data !== undefined) {
+      const { _id: userId } = user.data
+
+      ;(async function () {
+        console.log('Function ran.')
+        const res = await getMovies(userId)
+
+        setWatchlist(res.data)
+      })()
+    }
+
     getData(popularUrl, () => toggleLoading(false))
     // eslint-disable-next-line
-  }, [])
+  }, [authenticated])
 
   return (
     <Router>

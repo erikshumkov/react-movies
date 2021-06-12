@@ -19,6 +19,7 @@ export function AuthProvider({ children }) {
   const [authenticated, setAuthenticated] = useState(false)
   const [user, setUser] = useState({})
   const [loading, setLoading] = useState(true)
+  const [watchlist, setWatchlist] = useState([])
 
   async function checkLoggedIn() {
     const res = await axios.get(`${API}/getMe`, {
@@ -45,6 +46,7 @@ export function AuthProvider({ children }) {
   const value = {
     checkLoggedIn,
     authenticated,
+    setWatchlist,
     loading,
     user,
   }

@@ -9,7 +9,7 @@ import { useAuth } from '../../context/AuthContext'
 export default function Dashboard() {
   const [data, setData] = useState([])
   const { user, loading } = useAuth()
-  const { _id } = user.data
+  const { _id: userId } = user.data
 
   const { getMovies, deleteMovie } = watchlist
 
@@ -23,7 +23,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     ;(async function () {
-      const res = await getMovies(_id)
+      const res = await getMovies(userId)
 
       setData(res.data)
     })()
